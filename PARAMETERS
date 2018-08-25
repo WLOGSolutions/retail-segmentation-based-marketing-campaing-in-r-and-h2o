@@ -1,0 +1,5 @@
+RSuiteVersion: 0.32.245
+RVersion: 3.5
+Project: retail-segmentation-based-marketing-campaing-in-r-and-h2o
+Repositories: MRAN[2018-08-25]
+Artifacts: config_templ.txt, data, export

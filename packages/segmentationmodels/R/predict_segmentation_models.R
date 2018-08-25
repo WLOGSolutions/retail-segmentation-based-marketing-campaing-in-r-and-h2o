@@ -1,3 +1,4 @@
+#'@export
 predict_segmentation_models <- function(segmentation_models, train_df, test_df) {
     lapply(X = segmentation_models,
            FUN = function(segmentation_model) {

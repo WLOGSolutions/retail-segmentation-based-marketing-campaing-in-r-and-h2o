@@ -1,3 +1,4 @@
+#' @export
 build_segmentation_models <- function(training_frame, segmentation_vars, cluster_cnts, rounds = 20) {
   segmentation_models <- list()
   

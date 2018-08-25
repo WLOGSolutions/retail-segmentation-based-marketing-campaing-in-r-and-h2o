@@ -1,3 +1,4 @@
+#' @export
 find_best_classifier_model <- function(model_quality_measure = "AUC", ...) {
     h2o_grid <- h2o.grid(...)
     
