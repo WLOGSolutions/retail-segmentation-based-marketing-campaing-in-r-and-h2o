@@ -1,4 +1,12 @@
 .Rproj.user
 .Rhistory
+<<<<<<< HEAD
+.Rdata
+.Rbuildignore
+.Ruserdata
+config.txt
+.RData
+=======
 .RData
 .Ruserdata
+>>>>>>> 2d923e4... Imported final version

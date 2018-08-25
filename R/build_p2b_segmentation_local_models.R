@@ -1,17 +1,25 @@
-.libPaths("libs")
+# Detect proper script_path (you cannot use args yet as they are build with tools in set_env.r)
+script_path <- (function() {
+  args <- commandArgs(trailingOnly = FALSE)
+  script_path <- dirname(sub("--file=", "", args[grep("--file=", args)]))
+  if (!length(script_path)) {
+    return("R")
+  }
+  if (grepl("darwin", R.version$os)) {
+    base <- gsub("~\\+~", " ", base) # on MacOS ~+~ in path denotes whitespace
+  }
+  return(normalizePath(script_path))
+})()
+
+# Setting .libPaths() to point to libs folder
+source(file.path(script_path, "set_env.R"), chdir = T)
+
+config <- load_config()
+args <- args_parser()
 
 library(data.table)
 library(h2o)
-library(bit64)
-library(pROC)
 library(logging)
-
-source("find_best_model.R")
-source("build_segmentation_models.R")
-source("predict_segmentation_models.R")
-
-logging::basicConfig()
-
 
 h2o_local <- h2o.init(nthreads = 4, 
                       max_mem_size = "6g")
@@ -21,13 +29,13 @@ loginfo("--> H2O started")
 
 set.seed(1234)
 
-retail_train <- h2o.importFile(path = "data/retail_train.csv",
+retail_train <- h2o.importFile(path = file.path(script_path, "../data/retail_train.csv"),
                                destination_frame = "retail_train",
                                header = TRUE,
                                sep = ";",
                                parse = TRUE)
 
-retail_test <- h2o.importFile(path = "data/retail_test.csv",
+retail_test <- h2o.importFile(path = file.path(script_path, "..", "data/retail_test.csv"),
                               destination_frame = "retail_test",
                               header = TRUE,
                               sep = ";",
@@ -45,14 +53,14 @@ purchased_var <- "purchased"
 segmentation_vars <- colnames(retail_train)[grep(pattern = "^frq_.*_",
                                                  x = colnames(retail_train))] 
 
-segmentation_models <- build_segmentation_models(training_frame = h2o.rbind(retail_train,
+segmentation_models <- segmentationmodels::build_segmentation_models(training_frame = h2o.rbind(retail_train,
                                                                             retail_test),
                                                  segmentation_vars = segmentation_vars,
                                                  cluster_cnts = 2:5,
                                                  rounds = 20)
 loginfo("--> Built segmentation models")
 
-segmentation_preds <- predict_segmentation_models(segmentation_models = segmentation_models,
+segmentation_preds <- segmentationmodels::predict_segmentation_models(segmentation_models = segmentation_models,
                                                   train_df = retail_train,
                                                   test_df = retail_test)
 
@@ -135,4 +143,4 @@ loginfo("--> Best model [k = %s] with test AUC=%s",
         best_model$k,
         best_model$auc)
 
-saveRDS(best_model, file = "export/best_segs_local_models.RDS")
+saveRDS(best_model, file = file.path(script_path, "../export/best_segs_local_models.RDS"))

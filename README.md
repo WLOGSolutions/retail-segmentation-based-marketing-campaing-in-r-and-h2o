@@ -56,14 +56,19 @@ This means that local models for each segment gave the best result.
 
 Let's check if [DeLong's test](https://www.jstor.org/stable/2531595) confirm that improvements in AUCs are significant. Checking output from `compare_models.R` we can see that p-value is around 0.00071 when comparing *no segmentation* and *local models* which indicates that segmentation is important. It is worth to mention that comparing *segmentation var* with *local models* results in p-value 0.05681, which also indicates significant  improvement. We have also tested other predictive algorithms (like *GBM* or *RF*) but could not get AUC bigger than local *GLMs* for segments.
 
-## Prerequisites
 
-I have used R version 3.2.3 with the following R packages:
+## Prerequisities
 
-* [data.table](https://cran.r-project.org/web/packages/data.table/index.html), version 1.9.6
-* [h2o](http://www.h2o.ai/download/h2o/r), version 3.10.0.6
-* [bit64](https://cran.r-project.org/web/packages/bit64/index.html), version 0.9-5
-* [pROC](https://cran.r-project.org/web/packages/pROC/index.html), version 1.8
+To run the showcase you have to install:
+
+* [R](https://www.r-project.org/) in version 3.5.1
+* [R Suite](https://github.com/WLOGSolutions/RSuite/blob/master/docs/basic_workflow.md) in version [0.32-245](http://rsuite.io/RSuite_Download.php)
+
+For machine learning I have used:
+
+* [H2O](https://www.h2o.ai/) in version [3.20.0.2](http://h2o-release.s3.amazonaws.com/h2o/rel-wright/6/index.html)
+
+**Remark**: [R Suite] will take care of installing proper versions of the packages.
 
 ### Remark for Windows users
 
@@ -71,10 +76,42 @@ Instalation of the packages requires [Rtools](https://cran.r-project.org/bin/win
 
 ## Usage instruction
 
-1. Install packages by running `source("install_packages.R")`
-2. Run following scripts:
+### Cloning project
 
-- `source("build_p2b_nosegmentation_model.R")` - builds model without segmentation (**no segmentation**)
-- `source("build_p2b_segmentation_model.R")` - builds model (**segmentation var**) with extra predictor being a segment assignment
-- `source("build_p2b_segmentation_local_models.R")` - builds local models for each segment (**local models**).
-- `source("compare_models.R")` - compare statistical difference between  models
+First you have to clone the project using `git`:
+``` bash
+git clone https://github.com/WLOGSolutions/retail-segmentation-based-marketing-campaing-in-r-and-h2o
+```
+
+This will create a directory `retail-segmentation-based-marketing-campaing-in-r-and-h2o`. Issue command
+
+``` bash
+cd retail-segmentation-based-marketing-campaing-in-r-and-h2o
+```
+
+## Usage instruction
+
+### Prepare R Suite's project and install packages
+
+Install dependencies for the project
+
+```bash
+rsuite proj depsinst
+```
+
+Build custom package `segmentationmodels`
+
+```bash
+rsuite proj build
+```
+
+More about R Suite you can read [here](http://rsuite.io/RSuite_Tutorial.php).
+
+### Run the scripts
+
+Run the following scripts in the given order using instructions. Be sure that your working directory is the main project directory.
+
+- `source("R/build_p2b_nosegmentation_model.R")` - builds model without segmentation (**no segmentation**)
+- `source("R/build_p2b_segmentation_model.R")` - builds model (**segmentation var**) with extra predictor being a segment assignment
+- `source("R/build_p2b_segmentation_local_models.R")` - builds local models for each segment (**local models**).
+- `source("R/compare_models.R")` - compare statistical difference between  models
