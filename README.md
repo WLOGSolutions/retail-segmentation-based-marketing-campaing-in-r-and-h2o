@@ -3,7 +3,7 @@
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
 
-- [Showcase: on segmentation importance for marketing campaign in retail using [GNU R](https://www.r-project.org/) and [H2O](http://www.h2o.ai/).](#showcase-on-segmentation-importance-for-marketing-campaign-in-retail-using-gnu-rhttpswwwr-projectorg-and-h2ohttpwwwh2oai)
+- Sections
     - [Business story behind the showcase](#business-story-behind-the-showcase)
     - [Approach](#approach)
         - [What is segmentation in predictive modeling?](#what-is-segmentation-in-predictive-modeling)
