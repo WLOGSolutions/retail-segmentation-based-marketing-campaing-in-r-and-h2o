@@ -8,7 +8,7 @@
     - [Approach](#approach)
         - [What is segmentation in predictive modeling?](#what-is-segmentation-in-predictive-modeling)
         - [How one can use segmentation to improve predictive models?](#how-one-can-use-segmentation-to-improve-predictive-models)
-        - [Generating optimal segmentation (with given number of segments) with [H2O](http://h2o.ai)](#generating-optimal-segmentation-with-given-number-of-segments-with-h2ohttph2oai)
+        - [Generating optimal segmentation (with given number of segments) with H2O](#generating-optimal-segmentation-with-given-number-of-segments-with-h2o)
         - [Selecting number of segments](#selecting-number-of-segments)
         - [Obtained results](#obtained-results)
     - [Prerequisities](#prerequisities)
