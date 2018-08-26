@@ -1,5 +1,28 @@
 # Showcase: on segmentation importance for marketing campaign in retail using [GNU R](https://www.r-project.org/) and [H2O](http://www.h2o.ai/).
 
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
+**Table of Contents**
+
+- [Showcase: on segmentation importance for marketing campaign in retail using [GNU R](https://www.r-project.org/) and [H2O](http://www.h2o.ai/).](#showcase-on-segmentation-importance-for-marketing-campaign-in-retail-using-gnu-rhttpswwwr-projectorg-and-h2ohttpwwwh2oai)
+    - [Business story behind the showcase](#business-story-behind-the-showcase)
+    - [Approach](#approach)
+        - [What is segmentation in predictive modeling?](#what-is-segmentation-in-predictive-modeling)
+        - [How one can use segmentation to improve predictive models?](#how-one-can-use-segmentation-to-improve-predictive-models)
+        - [Generating optimal segmentation (with given number of segments) with [H2O](http://h2o.ai)](#generating-optimal-segmentation-with-given-number-of-segments-with-h2ohttph2oai)
+        - [Selecting number of segments](#selecting-number-of-segments)
+        - [Obtained results](#obtained-results)
+    - [Prerequisities](#prerequisities)
+        - [Remark for Windows users](#remark-for-windows-users)
+    - [Usage instruction](#usage-instruction)
+        - [Cloning project](#cloning-project)
+        - [Prepare R Suite's project and install packages](#prepare-r-suites-project-and-install-packages)
+        - [Run the scripts](#run-the-scripts)
+			- [Running from R session](#running-from-r-session)
+            - [Running from R cmd](#running-from-r-cmd)
+
+<!-- markdown-toc end -->
+
+
 ## Business story behind the showcase
 
 A retail chain "At the corner" sales different types of products. They would like to introduce a new product. They decided to go with an e-mail marketing campaign. To optimize campaign costs and customers' comfort they decided to carefully select customers that would be contacted in the campaign.
@@ -118,16 +141,16 @@ You are ready to run the scripts. Be sure that your working directory is the mai
 
 You can run the scripts from an active R session with commands as below: 
 
-- `source("R/build_p2b_nosegmentation_model.R")` - builds model without segmentation (**no segmentation**)
-- `source("R/build_p2b_segmentation_model.R")` - builds model (**segmentation var**) with extra predictor being a segment assignment
-- `source("R/build_p2b_segmentation_local_models.R")` - builds local models for each segment (**local models**).
-- `source("R/compare_models.R")` - compare statistical difference between  models
+* `source("R/build_p2b_nosegmentation_model.R")` - builds model without segmentation (**no segmentation**)
+* `source("R/build_p2b_segmentation_model.R")` - builds model (**segmentation var**) with extra predictor being a segment assignment
+* `source("R/build_p2b_segmentation_local_models.R")` - builds local models for each segment (**local models**).
+* `source("R/compare_models.R")` - compare statistical difference between  models
 
 ##### Running from R cmd
 
 I personally prefer using cmd line for running my R code. To run the scripts from within cmd you use the following scripts:
 
-- `Rscritp R/build_p2b_nosegmentation_model.R` - builds model without segmentation (**no segmentation**)
-- `Rscript R/build_p2b_segmentation_model.R` - builds model (**segmentation var**) with extra predictor being a segment assignment
-- `Rscript R/build_p2b_segmentation_local_models.R` - builds local models for each segment (**local models**).
-- `Rscript R/compare_models.R` - compare statistical difference between  models
+* `Rscript R/build_p2b_nosegmentation_model.R` - builds model without segmentation (**no segmentation**)
+* `Rscript R/build_p2b_segmentation_model.R` - builds model (**segmentation var**) with extra predictor being a segment assignment
+* `Rscript R/build_p2b_segmentation_local_models.R` - builds local models for each segment (**local models**).
+* `Rscript R/compare_models.R` - compare statistical difference between  models
